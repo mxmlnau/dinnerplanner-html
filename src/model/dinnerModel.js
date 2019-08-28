@@ -3,24 +3,31 @@ class DinnerModel {
 
   constructor() {
     this.dishes = dishesConst;
-
+    
     //TODO Lab 0
     // implement the data structure that will hold number of guests
     // and selected dishes for the dinner menu
 
+    this.chosenDishes = [];
+    this.numberOfGuests = 0;
   }
 
   setNumberOfGuests(num) {
     //TODO Lab 0
+    if (num >= 0) {
+        this.numberOfGuests = num;
+    } 
   }
 
   getNumberOfGuests() {
     //TODO Lab 0
+    return this.numberOfGuests;
   }
 
   //Returns the dish that is on the menu for selected type 
   getSelectedDish(type) {
     //TODO Lab 0
+    
   }
 
   //Returns all the dishes on the menu.
