@@ -33,6 +33,7 @@ class DinnerModel {
   //Returns all the dishes on the menu.
   getFullMenu() {
     //TODO Lab 0
+    return this.chosenDishes;
   }
 
   //Returns all ingredients for all the dishes on the menu.
@@ -49,11 +50,16 @@ class DinnerModel {
   //it is removed from the menu and the new one added.
   addDishToMenu(id) {
     //TODO Lab 0 
+    const dish = this.getDish(id);
+    this.chosenDishes = this.chosenDishes.filter(e => e.type != dish.type);
+    this.chosenDishes.push(dish);
   }
 
   //Removes dish from menu
   removeDishFromMenu(id) {
     //TODO Lab 0
+    this.chosenDishes = this.chosenDishes.filter(e => e.id != id);
+    // this.chosenDishes.splice(this.chosenDishes.findIndex(e => e.id == id));
   }
 
 
