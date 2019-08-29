@@ -78,10 +78,9 @@ class DinnerModel {
           }
         });
         if (dish.name.indexOf(query) !== -1) {
-          found = true;
-        }
+          found = true;}
       }
-      return dish.type === type || type == undefined && found;
+      return (dish.type === type || type == undefined || type === "")  && found;
     });
   }
 
