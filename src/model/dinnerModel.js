@@ -86,12 +86,9 @@ class DinnerModel {
 
   //Returns a dish of specific ID
   getDish(id) {
-    for (let dsh of this.dishes) {
-      if (dsh.id === id) {
-        return dsh;
-      }
-    }
-    return undefined;
+    return this.dishes.find(function(dish) {
+       return  dish.id ===id;
+    }); 
   }
 }
 
