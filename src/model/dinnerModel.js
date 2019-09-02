@@ -57,6 +57,7 @@ class DinnerModel {
   //query argument, text, if passed only returns dishes that contain the query in name or one of the ingredients.
   //if you don't pass any query, all the dishes will be returned
   getAllDishes(type, query) {
+    /*
     return this.dishes.filter(function (dish) {
       let found = true;
       if (query) {
@@ -70,7 +71,9 @@ class DinnerModel {
           found = true;}
       }
       return (dish.type === type || type == undefined || type === "")  && found;
-    });
+    }); 
+    */
+    return this.dishes.filter(dish =>  dish.type == type || !type).filter(dish => dish.name.indexOf(query) !== -1 || dish.ingredients.some(i => i.name.includes(query)) || !query);
   }
 
   //Returns a dish of specific ID

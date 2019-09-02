@@ -49,6 +49,7 @@ describe("DinnerModel", () => {
 
   describe("filtering for dishes", () => {
     it("returns all dishes if no args are specified", () => {
+      console.log(model.getAllDishes());
       const allDishes = model.getAllDishes();
       expect(allDishes.length).to.equal(10);
     });
