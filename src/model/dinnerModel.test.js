@@ -94,6 +94,7 @@ describe("DinnerModel", () => {
       expect(model.getFullMenu()).to.include(model.getDish(1));
       expect(model.getFullMenu()).to.include(model.getDish(100));
     });
+    
 
     it("overwrites dishes of the same type when adding", () => {
       model.addDishToMenu(1);
@@ -114,6 +115,12 @@ describe("DinnerModel", () => {
       model.removeDishFromMenu(1);
       // should now be removed
       expect(model.getFullMenu()).to.not.include(model.getDish(1));
+    });
+  });
+  describe("other tests", () => {
+    it("can return all ingredients of menu", () => {
+      model.addDishToMenu(1);  
+      expect(model.getAllIngredients()).to.include(model.getDish(1).ingredients);
     });
   });
 });
