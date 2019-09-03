@@ -48,8 +48,7 @@ describe("DinnerModel", () => {
   });
 
   describe("filtering for dishes", () => {
-    it("returns all dishes if no args are specified", () => {
-      console.log(model.getAllDishes());
+    it("returns all dishes if no args are specified", () => { 
       const allDishes = model.getAllDishes();
       expect(allDishes.length).to.equal(10);
     });
@@ -121,7 +120,8 @@ describe("DinnerModel", () => {
   describe("other tests", () => {
     it("can return all ingredients of menu", () => {
       model.addDishToMenu(1);  
-      expect(model.getAllIngredients()).to.include(model.getDish(1).ingredients);
+      model.addDishToMenu(100);
+      expect(model.getAllIngredients()).to.include.members(model.getDish(1).ingredients);
     });
   });
 });
