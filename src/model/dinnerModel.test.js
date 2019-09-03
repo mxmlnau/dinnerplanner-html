@@ -117,11 +117,4 @@ describe("DinnerModel", () => {
       expect(model.getFullMenu()).to.not.include(model.getDish(1));
     });
   });
-  describe("other tests", () => {
-    it("can return all ingredients of menu", () => {
-      model.addDishToMenu(1);  
-      model.addDishToMenu(100);
-      expect(model.getAllIngredients()).to.include.members(model.getDish(1).ingredients);
-    });
-  });
 });
