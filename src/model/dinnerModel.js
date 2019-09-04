@@ -3,9 +3,15 @@ class DinnerModel {
 
   constructor() {
     this.dishes = dishesConst;
-
+/*
+    import apiKey from 'config';
+    console.log(apiKey);
+*/
+    this.apiAdress = "http://sunset.nada.kth.se:8080/iprog/group/6";
     this.chosenDishes = [];
     this.numberOfGuests = 0;
+
+    //fetch(this.apiAdress.concat('',`/recipes/1/information`), {headers: {"X-Mashape-Key":this.apiKey}}).then(response => console.log(response));
   }
 
   setNumberOfGuests(num) {
@@ -62,9 +68,17 @@ class DinnerModel {
 
   //Returns a dish of specific ID
   getDish(id) {
-    return this.dishes.find(function(dish) {
-       return  dish.id ===id;
-    }); 
+    console.log(id);
+    if (Number.isInteger(id) && id > 0) {
+      fetch(this.apiAdress.concat('',`/recipes/${id}/information`), {
+          "method": "GET",
+          "headers": {"X-Mashape-Key":apiKey}
+      })
+      .then(response => console.log(response));
+      return this.dishes.find(function(dish) {
+        return  dish.id ===id;
+      }); 
+    }
   }
 }
 
