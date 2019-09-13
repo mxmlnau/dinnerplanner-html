@@ -44,8 +44,7 @@ class DinnerModel {
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
-  addDishToMenu(id) { 
-    const dish = this.getDish(id);
+  addDishToMenu(dish) {
     this.chosenDishes = this.chosenDishes.filter(e => e.type != dish.type); // use remove method
     this.chosenDishes.push(dish);
   }
@@ -63,7 +62,7 @@ class DinnerModel {
   getAllDishes(type, query) {
     let typeStr = type ? "type="+type+"":"";
     let queryStr = query ? "query="+query+"%20course":"";
-    console.log(this.apiAdress.concat(`/recipes/search?${typeStr+(type && query ? "&":"")+queryStr}`));
+    document.getElementById("loader").style.display = "block";
     return fetch(this.apiAdress.concat('',`/recipes/search?${typeStr+(type && query ? "&":"")+queryStr}`), {
           "method": "GET",
           "headers": {"X-Mashape-Key":apiKey}
@@ -73,17 +72,20 @@ class DinnerModel {
         console.log(data.results);
         return data.results;
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(document.getElementById("loader").style.display = "none");
   }
 
   //Returns a dish of specific ID
   getDish(id) {
-      return fetch(this.apiAdress.concat('',`/recipes/${id}/information`), {
-          "method": "GET",
-          "headers": {"X-Mashape-Key":apiKey}
-      })
+    document.getElementById("loader").style.display = "block";
+    return fetch(this.apiAdress.concat('',`/recipes/${id}/information`), {
+      "method": "GET",
+      "headers": {"X-Mashape-Key":apiKey}
+    })
       .then(response => response.json())
-      .catch(console.error);
+      .catch(console.error)
+      .finally(document.getElementById("loader").style.display = "none");
   }
 }
 
