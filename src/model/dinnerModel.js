@@ -10,8 +10,6 @@ class DinnerModel {
     this.apiAdress = "http://sunset.nada.kth.se:8080/iprog/group/6";
     this.chosenDishes = [];
     this.numberOfGuests = 0;
-
-    //fetch(this.apiAdress.concat('',`/recipes/1/information`), {headers: {"X-Mashape-Key":this.apiKey}}).then(response => console.log(response));
   }
 
   setNumberOfGuests(num) {
@@ -41,14 +39,14 @@ class DinnerModel {
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
   getTotalMenuPrice() {
-    return this.chosenDishes.reduce(function(acc, val) {return acc+val;})*this.numberOfGuests;
+    return this.chosenDishes.reduce(function(acc, val) {return acc+val;})*this.numberOfGuests; // TODO
   }
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   addDishToMenu(id) { 
     const dish = this.getDish(id);
-    this.chosenDishes = this.chosenDishes.filter(e => e.type != dish.type);
+    this.chosenDishes = this.chosenDishes.filter(e => e.type != dish.type); // use remove method
     this.chosenDishes.push(dish);
   }
 
@@ -69,12 +67,13 @@ class DinnerModel {
   //Returns a dish of specific ID
   getDish(id) {
     console.log(id);
-    if (Number.isInteger(id) && id > 0) {
+    if (Number.isInteger(id) && id > 0) { // TODO REMOVE, HAVE TO THROW 404
       fetch(this.apiAdress.concat('',`/recipes/${id}/information`), {
           "method": "GET",
           "headers": {"X-Mashape-Key":apiKey}
       })
-      .then(response => console.log(response));
+      .then(response => response.json())
+      .then(function(myJson) {console.log(JSON.stringify(myJson))});
       return this.dishes.find(function(dish) {
         return  dish.id ===id;
       }); 

@@ -28,23 +28,25 @@ describe("DinnerModel", () => {
   });
 
   describe("getting individual dishes", () => {
-    it("gets the correct dish", () => {
-      const dish1 = model.getDish(1);
-      expect(dish1.id).to.equal(1);
-      expect(dish1.name).to.equal("French toast");
-
-      const dish100 = model.getDish(100);
-      expect(dish100.id).to.equal(100);
-      expect(dish100.name).to.equal("Meat balls");
+    it("returns a promise", done => {
+      expect(model.getDish(559251) instanceof Promise).to.equal(true);
+      done();
     });
+    it("gets the correct dish", (done) => {
+      model.getDish(559251)
+      .then((data) => {
+        expect(data.title).to.equal("Breakfast Pizza");
+        done();
+      });
+    }).timeout(10000);
 
-    it("returns undefined if dish is not found", () => {
-      const result1 = model.getDish(-1);
-      expect(result1).to.equal(undefined);
-
-      const result2 = model.getDish();
-      expect(result2).to.equal(undefined);
-    });
+    it("returns undefined if dish is not found", (done) => {
+      model.getDish(-1)
+      .then((data) => {
+        expect(data.code).to.equal(404);
+        done();
+      });
+    }).timeout(10000);
   });
 
   describe("filtering for dishes", () => {
