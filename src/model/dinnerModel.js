@@ -60,24 +60,30 @@ class DinnerModel {
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
   //query argument, text, if passed only returns dishes that contain the query in name or one of the ingredients.
   //if you don't pass any query, all the dishes will be returned
-  getAllDishes(type, query) { 
-    return this.dishes.filter(dish =>  dish.type == type || !type).filter(dish => dish.name.indexOf(query) !== -1 || dish.ingredients.some(i => i.name.includes(query)) || !query);
-  }
-
-  //Returns a dish of specific ID
-  getDish(id) {
-    console.log(id);
-    if (Number.isInteger(id) && id > 0) { // TODO REMOVE, HAVE TO THROW 404
-      fetch(this.apiAdress.concat('',`/recipes/${id}/information`), {
+  getAllDishes(type, query) {
+    let typeStr = type ? "type="+type+"":"";
+    let queryStr = query ? "query="+query+"%20course":"";
+    console.log(this.apiAdress.concat(`/recipes/search?${typeStr+(type && query ? "&":"")+queryStr}`));
+    return fetch(this.apiAdress.concat('',`/recipes/search?${typeStr+(type && query ? "&":"")+queryStr}`), {
           "method": "GET",
           "headers": {"X-Mashape-Key":apiKey}
       })
       .then(response => response.json())
-      .then(function(myJson) {console.log(JSON.stringify(myJson))});
-      return this.dishes.find(function(dish) {
-        return  dish.id ===id;
-      }); 
-    }
+      .then(data => {
+        console.log(data.results);
+        return data.results;
+      })
+      .catch(console.error);
+  }
+
+  //Returns a dish of specific ID
+  getDish(id) {
+      return fetch(this.apiAdress.concat('',`/recipes/${id}/information`), {
+          "method": "GET",
+          "headers": {"X-Mashape-Key":apiKey}
+      })
+      .then(response => response.json())
+      .catch(console.error);
   }
 }
 
