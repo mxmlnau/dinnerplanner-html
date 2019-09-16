@@ -1,4 +1,4 @@
-class HomeView {
+class SideBarView {
   constructor(container) {
     this.container = container;
     this.startBtn = null;
@@ -7,12 +7,15 @@ class HomeView {
   // An example of creating HTML declaratively. Think about the pros and cons of this approach.
   render() {
     var content = /* template */ `
-    <div class="header d-flex align-items-center justify-content-center">
-      <h1>Dinner Planner</h1>
+    <div>
+      <h3>My Dinner</h3>
     </div>
     <div>
-      <p>This is the dinner planner app. Here you can put plan your dinner and do other useful things.</p>
-      <button class=#startBtn> Create dinner</button>
+      <p>People</p>
+    </div>
+    <div class="container space-between">
+      <div class="left">Dish Name</div>
+      <div class="right">Cost</div>
     </div>
     `;
     this.container.innerHTML = content;

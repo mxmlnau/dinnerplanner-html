@@ -1,0 +1,43 @@
+.page-content {
+}
+
+
+
+.page-row1 {
+    display:flex;
+    flex-direction:row;
+}
+
+
+
+div .container.space-between {
+    display: flex;
+    padding: 30px;
+    justify-content: space-between;
+    background-color: orange;
+}
+
+#sideBar {
+    background-color: coral;
+}
+
+.search-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows:repeat(2,1fr); 
+}
+
+.search-title {
+    grid-column: span 3;
+}
+
+
+@media screen and (max-width: 400px) {
+    .page-row1 {
+        flex-direction: column;
+    }
+    
+    .search-box {
+        grid-column: span 3;
+    }
+}

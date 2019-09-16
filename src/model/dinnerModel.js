@@ -8,7 +8,7 @@ class DinnerModel {
     console.log(apiKey);
 */
     this.apiAdress = "http://sunset.nada.kth.se:8080/iprog/group/6";
-    this.chosenDishes = [];
+    this.menu = [];
     this.numberOfGuests = 0;
   }
 
@@ -24,35 +24,37 @@ class DinnerModel {
 
   //Returns the dish that is on the menu for selected type 
   getSelectedDish(type) {
-    return this.chosenDishes.filter(e => e.type == type); 
+    return this.menu.filter(e => e.type == type); 
   }
 
   //Returns all the dishes on the menu.
   getFullMenu() { 
-    return this.chosenDishes;
+    return this.menu;
   }
 
   //Returns all ingredients for all the dishes on the menu.
   getAllIngredients() {
-      return this.chosenDishes.map(function (dish) {return dish.ingredients}).flat(); 
+      return this.menu.map(function (dish) {return dish.ingredients}).flat(); 
   }
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
   getTotalMenuPrice() {
-    return this.chosenDishes.reduce(function(acc, val) {return acc+val;})*this.numberOfGuests; // TODO
+    return this.menu.reduce(function(acc, val) {return acc+val;})*this.numberOfGuests; // TODO
   }
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
-  addDishToMenu(dish) {
-    this.chosenDishes = this.chosenDishes.filter(e => e.type != dish.type); // use remove method
-    this.chosenDishes.push(dish);
+  addDishToMenu(id) {
+    let dish = this.getDish(id);
+    this.menu = this.menu.filter(e => e.type != dish.type);
+    this.menu.push(dish.data);
+    console.log(this.menu);
   }
 
   //Removes dish from menu
   removeDishFromMenu(id) {
-    this.chosenDishes = this.chosenDishes.filter(e => e.id != id);
-    // this.chosenDishes.splice(this.chosenDishes.findIndex(e => e.id == id));
+    this.menu = this.menu.filter(e => e.id != id);
+    // this.menu.splice(this.menu.findIndex(e => e.id == id));
   }
 
 

@@ -4,8 +4,13 @@ window.onload = function () {
   const model = new DinnerModel();
 
   const container = document.getElementsByClassName("page-content")[0]
-  const view = new OverviewView(container, model);
-  view.render()
+  const homeView = new HomeView(document.getElementById("homeView"), model);
+  const overView = new OverviewView(container, model);  
+  const sideBarView = new SideBarView(document.getElementById("sideBar"),model);
+  const searchView = new SearchView(document.getElementById("search"),model);
+  sideBarView.render();
+  searchView.render();
+  //homeView.render();
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
