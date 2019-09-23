@@ -8,13 +8,22 @@
     flex-direction:row;
 }
 
+.header {
+    padding: 5%;
+    display: flex;
+    align-items: center;
+    background-color: coral;
+}
 
+.header-text {
+    margin:auto;
+}
 
-div .container.space-between {
+.container.space-between {
     display: flex;
     padding: 30px;
     justify-content: space-between;
-    background-color: orange;
+    background-color: lightgray;
 }
 
 #sideBar {
@@ -25,6 +34,21 @@ div .container.space-between {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows:repeat(2,1fr); 
+}
+
+.dish-grid {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.dish-card {
+    max-width: 200px;
+}
+
+img {
+    max-width: 200px;
 }
 
 .search-title {

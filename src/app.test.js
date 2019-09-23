@@ -23,7 +23,7 @@ describe("DinnerPlanner App", () => {
   });
 
   describe("Search view", () => {
-    beforeEach(() => {
+    beforeEach( () => {
       model.addDishToMenu(559251);
       searchView.render();
     });
@@ -79,7 +79,7 @@ describe("DinnerPlanner App", () => {
   });
 
   describe("Confirmation page", () => {
-    beforeEach(() => {
+    beforeEach( () => {
       model.addDishToMenu(559251);
       overviewView.render();
     });

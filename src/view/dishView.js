@@ -1,0 +1,35 @@
+class DishView {
+  constructor(container, dish) {
+    this.container = container;
+    this.dish = dish;
+    this.startBtn = null;
+  }
+  
+  render() {
+    // All dishViews of search result
+    const div = document.createElement("div");
+    const img = document.createElement("img");
+    const p = document.createElement("p");
+    div.setAttribute("class", "dish-card");
+    img.setAttribute("src", `https://spoonacular.com/recipeImages/${this.dish.image}`);
+    img.setAttribute("alt", `image of ${this.dish.title}`);
+    div.appendChild(img);
+    p.textContent = this.dish.title;
+    div.appendChild(p);
+    this.container.appendChild(div);
+    
+    const content = `
+      <div class="dish-card">
+        <img
+          >
+        </img>
+        <p>${this.dish.title}</p>
+      </div>
+        `;
+    this.afterRender();
+  }
+
+  afterRender() {
+    this.startBtn = this.container.getElementsByClassName("#startBtn");
+  }
+}

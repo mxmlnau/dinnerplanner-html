@@ -3,13 +3,10 @@ class DinnerModel {
 
   constructor() {
     this.dishes = dishesConst;
-/*
-    import apiKey from 'config';
-    console.log(apiKey);
-*/
     this.apiAdress = "http://sunset.nada.kth.se:8080/iprog/group/6";
+    // Prevent crasch when config file is missing
     this.menu = [];
-    this.numberOfGuests = 0;
+    this.numberOfGuests = 7;
   }
 
   setNumberOfGuests(num) {
@@ -45,10 +42,11 @@ class DinnerModel {
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   addDishToMenu(id) {
-    let dish = this.getDish(id);
-    this.menu = this.menu.filter(e => e.type != dish.type);
-    this.menu.push(dish.data);
-    console.log(this.menu);
+    return this.getDish(id).then(dish => {
+        this.menu = this.menu.filter(e => e.type != dish.type);
+        this.menu.push(dish);
+        console.log(dish);
+    });
   }
 
   //Removes dish from menu
@@ -57,6 +55,11 @@ class DinnerModel {
     // this.menu.splice(this.menu.findIndex(e => e.id == id));
   }
 
+  handleHTTPError(response) {
+    if(response.ok)
+       return response;
+    throw Error;
+  }
 
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
   //query argument, text, if passed only returns dishes that contain the query in name or one of the ingredients.
@@ -64,30 +67,25 @@ class DinnerModel {
   getAllDishes(type, query) {
     let typeStr = type ? "type="+type+"":"";
     let queryStr = query ? "query="+query+"%20course":"";
-    document.getElementById("loader").style.display = "block";
     return fetch(this.apiAdress.concat('',`/recipes/search?${typeStr+(type && query ? "&":"")+queryStr}`), {
           "method": "GET",
           "headers": {"X-Mashape-Key":apiKey}
       })
+      //.then(this.handleHTTPError)
       .then(response => response.json())
-      .then(data => {
-        console.log(data.results);
-        return data.results;
-      })
-      .catch(console.error)
-      .finally(document.getElementById("loader").style.display = "none");
+      .then(data => {return data.results;})
+      .catch(console.error);
   }
 
   //Returns a dish of specific ID
   getDish(id) {
-    document.getElementById("loader").style.display = "block";
     return fetch(this.apiAdress.concat('',`/recipes/${id}/information`), {
       "method": "GET",
       "headers": {"X-Mashape-Key":apiKey}
     })
+      //.then(this.handleHTTPError)
       .then(response => response.json())
-      .catch(console.error)
-      .finally(document.getElementById("loader").style.display = "none");
+      .catch(console.error);
   }
 }
 

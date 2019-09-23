@@ -1,12 +1,12 @@
 class SearchView {
-  constructor(container) {
+  constructor(container, model) {
     this.container = container;
+    this.model = model;
     this.startBtn = null;
   }
   
-  // An example of creating HTML declaratively. Think about the pros and cons of this approach.
   render() {
-    var content = /* template */ `
+    var content = `
     <div class="search-grid">
       <div class="search-title">
         <p>Find a dish</p>
@@ -27,6 +27,7 @@ class SearchView {
           <button>Search</button>
       </div>
     </div>
+    <div id="dishSearchView"></div>
     `;
     this.container.innerHTML = content;
     this.afterRender();
@@ -34,5 +35,7 @@ class SearchView {
 
   afterRender() {
     this.startBtn = this.container.getElementsByClassName("#startBtn");
+    let dishSearchView =  new DishSearchView(this.container.querySelector("#"+"dishSearchView"), this.model);
+    dishSearchView.render();
   }
 }
