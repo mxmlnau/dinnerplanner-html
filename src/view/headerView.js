@@ -4,12 +4,9 @@ class HeaderView {
     this.startBtn = null;
   }
   
-  // An example of creating HTML declaratively. Think about the pros and cons of this approach.
   render() {
-    var content = /* template */ `
-    <div class="header">
-      <h1 class="header-text">Dinner Planner</h0>
-    </div>
+    var content = `
+    <h1 id="header-text">Dinner Planner</h1>
     `;
     this.container.innerHTML = content;
     this.afterRender();

@@ -11,6 +11,7 @@ class DishView {
     const img = document.createElement("img");
     const p = document.createElement("p");
     div.setAttribute("class", "dish-card");
+    img.setAttribute("class", "dish-view-img");
     img.setAttribute("src", `https://spoonacular.com/recipeImages/${this.dish.image}`);
     img.setAttribute("alt", `image of ${this.dish.title}`);
     div.appendChild(img);

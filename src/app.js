@@ -2,32 +2,33 @@ window.onload = function () {
   console.log("start");
   //We instantiate our model
   const model = new DinnerModel();
-  model.addDishToMenu(559251);
-  model.addDishToMenu(559235);
-  const container = document.getElementsByClassName("page-content")[0]
-  const homeView = new HomeView(document.getElementById("homeView"));
-  const overView = new OverviewView(container, model);
-  const headerView = new HeaderView(document.getElementById("header"),model);
-  const sideBarView = new SideBarView(document.getElementById("sideBarView"),model);
-  const searchView = new SearchView(document.getElementById("searchView"),model);
+  model.addDishToMenu(559235).then(() => {
 
-  // Checks if views are present in DOM
-  if (homeView != null) {
-    console.log(homeView);
-//    homeView.render();
-  }
-  if (headerView != null) {
+//  const overView = new OverviewView(container, model);
+
+  // Creates and renders views if corresponding id tag is present in DOM.
+  if (document.getElementById("header") != null) {
+    const headerView = new HeaderView(document.getElementById("header"));
     headerView.render();
   } 
-  if (sideBarView != null) {
+
+  if (document.getElementById("homeView") != null) {
+    const homeView = new HomeView(document.getElementById("homeView"));
+    homeView.render();
+  }
+
+  if (document.getElementById("sideBarView") != null) {
+    const sideBarView = new SideBarView(document.getElementById("sideBarView"),model);
     sideBarView.render();
   }
-  if (searchView != null) {
+  if (document.getElementById("searchView") != null) {
+    const searchView = new SearchView(document.getElementById("searchView"),model);
     searchView.render();
   }
-//  if (dishSearchView != null) {
-//    dishSearchView.render();
-//  }
+  if (document.getElementById("dishDetailsView") != null) {
+    const dishDetailsView = new DishDetailsView(document.getElementById("dishDetailsView"),model);
+    dishDetailsView.render();
+  }
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
@@ -35,5 +36,5 @@ window.onload = function () {
    * In other places you should limit the search only to the children
    * of the specific view you're working with.
    */
-
+  });
 };

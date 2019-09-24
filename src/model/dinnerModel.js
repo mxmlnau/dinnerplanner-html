@@ -4,9 +4,8 @@ class DinnerModel {
   constructor() {
     this.dishes = dishesConst;
     this.apiAdress = "http://sunset.nada.kth.se:8080/iprog/group/6";
-    // Prevent crasch when config file is missing
     this.menu = [];
-    this.numberOfGuests = 7;
+    this.numberOfGuests = 3;
   }
 
   setNumberOfGuests(num) {

@@ -35,7 +35,7 @@ class SearchView {
 
   afterRender() {
     this.startBtn = this.container.getElementsByClassName("#startBtn");
-    let dishSearchView =  new DishSearchView(this.container.querySelector("#"+"dishSearchView"), this.model);
+    let dishSearchView =  new DishSearchView(this.container.querySelector("#dishSearchView"), this.model);
     dishSearchView.render();
   }
 }
