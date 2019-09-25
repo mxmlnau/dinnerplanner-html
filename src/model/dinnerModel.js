@@ -5,7 +5,7 @@ class DinnerModel {
     this.dishes = dishesConst;
     this.apiAdress = "http://sunset.nada.kth.se:8080/iprog/group/6";
     this.menu = [];
-    this.numberOfGuests = 3;
+    this.numberOfGuests = 2;
   }
 
   setNumberOfGuests(num) {
@@ -42,7 +42,8 @@ class DinnerModel {
   //it is removed from the menu and the new one added.
   addDishToMenu(id) {
     return this.getDish(id).then(dish => {
-        this.menu = this.menu.filter(e => e.type != dish.type);
+        console.log(dish.dishTypes);
+        this.menu = this.menu.filter(e => e.dishTypes != dish.dishTypes);
         this.menu.push(dish);
         console.log(dish);
     });

@@ -11,7 +11,7 @@ class DishDetailsView {
     div.setAttribute("class", "dish-grid");
     this.model.getDish(525215).then( dish => {
       const content = `
-        <div class="page-col1">
+        <div class="page-col details">
           <h3>${dish.title}</h3>
           <img class="dish-details-img" src="${dish.image}" alt="${dish.title}"></img>
           <p>
@@ -21,7 +21,7 @@ class DishDetailsView {
             efficitur. Fusce lectus leo, consequat vitae dictum id, tristique id risus. Sed.
           </p>
         </div>
-        <div class="page-col1 ingredients">
+        <div class="page-col ingredients">
           <h5>Ingredients for ${this.model.getNumberOfGuests()} people</h5>
           ${dish.extendedIngredients.map(ingredient => 
               `<p>${ingredient.measures.metric.amount} ${ingredient.measures.metric.unitShort} ${ingredient.name}</p>`

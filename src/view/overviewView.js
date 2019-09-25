@@ -1,32 +1,30 @@
 class OverviewView {
-    constructor(container, model) {
-        this.container = container;
-        this.model = model;
+  constructor(container, model) {
+    this.container = container;
+    this.model = model;
+    this.startBtn = null;
+  }
+
+  render() {
+    // All dishViews of search result
+    const content = `
+      <div id="overview-top" class="container space-between">
+        <h5 class="left"> My Dinner: ${this.model.getNumberOfGuests()} people</h5>
+        <button id="overview-top-button" class="right">Go back and edit dinner</button>
+      </div>
+      <div class="dish-grid"></div>
+      <button id="toPrintBtn">Print Full Recipe</button>
+    `;
+    this.container.innerHTML = content;
+    this.afterRender();
+  }
+
+  afterRender() {
+    const dishes = this.model.getFullMenu();
+    for (let i in dishes) {
+      let dishView = new DishView(this.container.querySelector(".dish-grid"), dishes[i]);
+      dishView.render();
     }
-
-    // An example of creating HTML procedurally. Think about the pros and cons of this approach.
-    render() {
-      const paragraph = this.container.appendChild(document.createElement('P'))
-      paragraph.innerHTML = "This dinner will be Awesome!";
-
-      const num_people_val = 3;
-      const paragraph2 = this.container.appendChild(document.createElement('P'))
-      const num_people = paragraph2.appendChild(document.createElement('SPAN'))
-      num_people.innerHTML = num_people_val;
-      paragraph2.innerHTML += " people are coming!";
-
-      const paragraph3 = this.container.appendChild(document.createElement('P'))
-      paragraph3.innerHTML = "We will be eating the following:";
-
-      const list = this.container.appendChild(document.createElement('UL'))
-
-      for(const food of ["Bread!", "Ham!", "Pizza!"]) {
-        list.appendChild(document.createElement('UL')).innerHTML = food;
-      }
-
-      this.afterRender();
-    }
-
-    afterRender() {
-    }
+    this.startBtn = this.container.getElementsByClassName("#startBtn");
+  }
 }

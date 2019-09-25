@@ -27,7 +27,7 @@ class SearchView {
           <button>Search</button>
       </div>
     </div>
-    <div id="dishSearchView"></div>
+    <div id="dishSearchView" class="dish-grid"></div>
     `;
     this.container.innerHTML = content;
     this.afterRender();

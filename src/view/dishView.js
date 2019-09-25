@@ -12,7 +12,11 @@ class DishView {
     const p = document.createElement("p");
     div.setAttribute("class", "dish-card");
     img.setAttribute("class", "dish-view-img");
-    img.setAttribute("src", `https://spoonacular.com/recipeImages/${this.dish.image}`);
+    let imgUrl = `${this.dish.image}`;
+    if (!imgUrl.includes("https")) {
+       imgUrl = `https://spoonacular.com/recipeImages/${imgUrl}`;
+    }
+    img.setAttribute("src", imgUrl);
     img.setAttribute("alt", `image of ${this.dish.title}`);
     div.appendChild(img);
     p.textContent = this.dish.title;

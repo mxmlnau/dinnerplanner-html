@@ -1,36 +1,41 @@
 .page-content {
 }
 
-
-#home-view {
-    padding: 10%;
-    text-align: center;
+body {
+  font-family: Helvetica;
+  margin: 0px;
 }
-.page-row1 {
+
+/*---Flex and Grid stuff---*/
+.page-row {
     display:flex;
+    width: 100%;
     flex-direction:row;
 }
 
-.page-col1 {
+.page-col {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
 }
 
-.dish-details-img {
-    max-width: 100%;
+.container.space-between {
+    display: flex;
+    justify-content: space-between;
 }
 
-.page-col1.ingredients {
-    background-color: lightyellow;
+.dish-grid {
+    padding: 10px;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat( auto-fit, minmax(210px, 1fr) );
+    grid-gap: 10px;
 }
 
-#add-to-menu {
-    width: 40%;
-}
 
-#header {
+/*--- HeaderView---*/
+#headerView {
     padding: 5%;
     display: flex;
     align-items: center;
@@ -41,12 +46,35 @@
     margin:auto;
 }
 
-.container.space-between {
-    display: flex;
-    justify-content: space-between;
+
+/*--- HomeView---*/
+#home-view {
+    padding: 10%;
+    text-align: center;
 }
 
+
+/*--- DishDetailsView---*/
+.page-col.details {
+    width: 50%;
+}
+.dish-details-img {
+    max-width: 100%;
+}
+
+.page-col.ingredients {
+    width: 50%;
+    background-color: lightyellow;
+}
+
+#add-to-menu {
+    width: 40%;
+}
+
+
+/*--- SideBarView---*/
 #sideBarView {
+    padding: 10px;
     min-width: 250px;
     text-align: center;
     background-color: lightgrey;
@@ -60,6 +88,13 @@
     width: 40%;
 }
 
+
+
+/*--- SearchView---*/
+#searchView {
+    width: 100%;
+}
+
 .search-grid {
     display: grid;
     padding: 10px;
@@ -68,13 +103,27 @@
     grid-template-rows:repeat(2,1fr); 
 }
 
-.dish-grid {
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+.search-title {
+    grid-column: span 3;
 }
 
+/*---OverviewView---*/
+#overviewView {
+    text-align: center;
+    align-items: center;
+}
+
+#overview-printout-top {
+    background-color: lightgrey;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#overview-top-button {
+    height: 100%;
+}
+
+/*--- DishView---*/
 .dish-card {
     max-width: 200px;
     text-align: center;
@@ -87,11 +136,26 @@
     object-fit: cover;
 }
 
-.search-title {
-    grid-column: span 3;
+
+/*--- PrintoutView---*/
+.printout-img {
+    padding: 10px;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
 }
 
+.printout-description {
+    padding: 10px;
+    max-width: 35%;
+}
 
+.printout-instructions {
+    padding: 10px;
+    max-width: 35%;
+}
+
+/*---Responsive stuff---*/
 @media screen and (max-width: 400px) {
     .page-row1 {
         flex-direction: column;
