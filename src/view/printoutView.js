@@ -3,10 +3,10 @@ class PrintoutView {
     this.container = container;
     this.model = model;
     this.startBtn = null;
+    this.model.addObserver(this);
   }
 
   render() {
-    // All dishViews of search result
     const content = `
       <div id="overview-printout-top" class="container space-between">
         <h5 class="left"> My Dinner: ${this.model.getNumberOfGuests()} people</h5>
@@ -27,7 +27,7 @@ class PrintoutView {
           </div>
           <div class="printout-instructions">
             <h3>Instructions</h3>
-            <p>${dish.instructions}</p>
+            <p id="printout-instructions">${dish.instructions}</p>
           </div>
         </div>
         `)}
@@ -37,8 +37,12 @@ class PrintoutView {
     this.afterRender();
   }
 
+  update(model, changeDetails) {
+    console.log(this.model.menu);
+    console.log("Update");
+    this.render();
+  }
+
   afterRender() {
-    
-    this.startBtn = this.container.getElementsByClassName("#startBtn");
   }
 }

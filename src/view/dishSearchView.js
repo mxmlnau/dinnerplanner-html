@@ -9,7 +9,6 @@ class DishSearchView {
     // All dishViews of search result
     this.model.getAllDishes("Pizza").then( dishes => {
       for (let i in dishes) {
-        console.log(dishes[i]);
         let dishView = new DishView(this.container, dishes[i]);
         dishView.render();  // TODO Remove? Maybe better placed in afterRender()...
       }

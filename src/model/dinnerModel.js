@@ -1,7 +1,8 @@
 //DinnerModel class
-class DinnerModel {
+class DinnerModel extends Observable {
 
   constructor() {
+    super();
     this.dishes = dishesConst;
     this.apiAdress = "http://sunset.nada.kth.se:8080/iprog/group/6";
     this.menu = [];
@@ -12,6 +13,7 @@ class DinnerModel {
     if (num >= 0) {
         this.numberOfGuests = num;
     } 
+    this.notifyObservers(this,"hej");
   }
 
   getNumberOfGuests() {
@@ -41,11 +43,11 @@ class DinnerModel {
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   addDishToMenu(id) {
+    console.log(`Add dish: ${id}`);
     return this.getDish(id).then(dish => {
-        console.log(dish.dishTypes);
         this.menu = this.menu.filter(e => e.dishTypes != dish.dishTypes);
         this.menu.push(dish);
-        console.log(dish);
+        this.notifyObservers(this,"hej");
     });
   }
 
@@ -53,6 +55,7 @@ class DinnerModel {
   removeDishFromMenu(id) {
     this.menu = this.menu.filter(e => e.id != id);
     // this.menu.splice(this.menu.findIndex(e => e.id == id));
+    this.notifyObservers(this,"hej");
   }
 
   handleHTTPError(response) {

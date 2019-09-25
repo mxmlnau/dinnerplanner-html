@@ -4,8 +4,6 @@ window.onload = function () {
   const model = new DinnerModel();
   model.addDishToMenu(556177).then(()=>model.addDishToMenu(559234)).then(() => {
 
-//  const overView = new OverviewView(container, model);
-  console.log(model.getFullMenu());
   // Creates and renders views if corresponding id tag is present in DOM.
   if (document.getElementById("headerView") != null) {
     const headerView = new HeaderView(document.getElementById("headerView"));
@@ -41,6 +39,7 @@ window.onload = function () {
     const printoutView = new PrintoutView(document.getElementById("printoutView"),model);
     printoutView.render();
   }
+  model.addDishToMenu(123456);
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
    * query for elements in the whole document.
