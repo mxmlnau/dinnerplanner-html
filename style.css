@@ -2,8 +2,8 @@
 }
 
 body {
-  font-family: Helvetica;
-  margin: 0px;
+    font-family: Helvetica;
+    margin: 0px;
 }
 
 /*---Flex and Grid stuff---*/
@@ -156,9 +156,31 @@ body {
 }
 
 /*---Responsive stuff---*/
-@media screen and (max-width: 400px) {
-    .page-row1 {
+@media screen and (max-width: 650px) {
+    .page-row {
         flex-direction: column;
+    }
+
+    .page-col.details {
+        width: 100%;
+    }
+
+    .page-col.ingredients {
+        width: 100%;
+    }
+
+    .printout-img {
+        align-self:center;
+        width: 90%;
+        height: 90%;
+    }
+
+    .printout-description {
+        max-width: 100%;
+    }
+
+    .printout-instructions {
+        max-width: 100%;
     }
     
     .search-box {
