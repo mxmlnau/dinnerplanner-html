@@ -24,7 +24,11 @@ class SidebarView extends View {
     this.afterRender();
   }
 
-  
+  update(model, changeDetails) {
+    console.log(this.model.menu);
+    console.log("Update sidebar");
+    this.render();
+  }
 
   afterRender() {
     const menuList = this.container.querySelector("#menu-list");

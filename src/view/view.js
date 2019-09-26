@@ -13,7 +13,6 @@ class View {
   }
 
   attach() {
-    console.log(this.model);
     this.model.addObserver(this);
   }
 
