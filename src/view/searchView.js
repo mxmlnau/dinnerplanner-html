@@ -39,4 +39,8 @@ class SearchView extends View {
     let dishSearchView =  new DishSearchView(this.container.querySelector("#dishSearchView"), this.model);
     dishSearchView.render();
   }
+
+  update(payload) {
+    // TODO lab3
+  }
 }

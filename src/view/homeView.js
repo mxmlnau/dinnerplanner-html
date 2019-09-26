@@ -19,4 +19,8 @@ class HomeView extends View {
   afterRender() {
     this.startBtn = this.container.querySelector("#startBtn");
   }
+
+  update(payload) {
+    // TODO Lab3
+  }
 }

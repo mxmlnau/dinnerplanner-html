@@ -26,6 +26,9 @@ class OverviewView extends View {
       let dishView = new DishView(this.container.querySelector(".dish-grid"), dishes[i]);
       dishView.render();
     }
-    this.startBtn = this.container.getElementsByClassName("#startBtn");
-  }
+
+    update(payload) {
+      // TODO Lab3
+    }
+
 }

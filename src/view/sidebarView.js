@@ -47,4 +47,8 @@ class SidebarView extends View {
       menuList.appendChild(div);
     }
   }
+
+  update(payload) {
+    // TODO Lab3
+  }
 }
