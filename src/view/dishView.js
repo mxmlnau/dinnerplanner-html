@@ -1,5 +1,6 @@
-class DishView {
+class DishView extends View {
   constructor(container, dish) {
+    super();
     this.container = container;
     this.dish = dish;
     this.startBtn = null;

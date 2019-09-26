@@ -1,5 +1,6 @@
-class HeaderView {
+class HeaderView extends View {
   constructor(container) {
+    super();
     this.container = container;
     this.startBtn = null;
   }

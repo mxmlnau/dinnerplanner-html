@@ -1,5 +1,6 @@
-class DishSearchView {
+class DishSearchView extends View {
   constructor(container, model) {
+    super();
     this.container = container;
     this.model = model;
     this.startBtn = null;

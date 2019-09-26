@@ -1,5 +1,6 @@
-class HomeView {
+class HomeView extends View {
   constructor(container) {
+    super();
     this.container = container;
     this.startBtn = null;
   }
@@ -16,6 +17,6 @@ class HomeView {
   }
 
   afterRender() {
-    this.startBtn = this.container.getElementsByClassName("#startBtn");
+    this.startBtn = this.container.querySelector("#startBtn");
   }
 }

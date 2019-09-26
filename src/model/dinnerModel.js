@@ -47,7 +47,7 @@ class DinnerModel extends Observable {
     return this.getDish(id).then(dish => {
         this.menu = this.menu.filter(e => e.dishTypes != dish.dishTypes);
         this.menu.push(dish);
-        this.notifyObservers(this,"hej");
+        this.notifyObservers({type:"addDish", dish:dish});
     });
   }
 

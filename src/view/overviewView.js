@@ -1,5 +1,6 @@
-class OverviewView {
+class OverviewView extends View {
   constructor(container, model) {
+    super();
     this.container = container;
     this.model = model;
     this.startBtn = null;

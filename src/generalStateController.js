@@ -2,8 +2,9 @@ window.onload = function () {
   console.log("start");
   //We instantiate our model
   const model = new DinnerModel();
-  model.addDishToMenu(123455).then(()=>model.addDishToMenu(559234)).then(() => {
-
+  model.addDishToMenu(123455);
+  model.addDishToMenu(559234);
+  model.addDishToMenu(556177);
   // Creates and renders views if corresponding id tag is present in DOM.
   if (document.getElementById("headerView") != null) {
     const headerView = new HeaderView(document.getElementById("headerView"));
@@ -12,12 +13,14 @@ window.onload = function () {
 
   if (document.getElementById("homeView") != null) {
     const homeView = new HomeView(document.getElementById("homeView"));
-    homeView.render();
+//    homeView.render();
+    const homeController = new HomeController(homeView);
+    homeController.renderView();
   }
 
-  if (document.getElementById("sideBarView") != null) {
-    const sideBarView = new SideBarView(document.getElementById("sideBarView"),model);
-    sideBarView.render();
+  if (document.getElementById("sidebarView") != null) {
+    const sidebarView = new SidebarView(document.getElementById("sidebarView"),model);
+    sidebarView.render();
   }
 
   if (document.getElementById("searchView") != null) {
@@ -39,12 +42,28 @@ window.onload = function () {
     const printoutView = new PrintoutView(document.getElementById("printoutView"),model);
     printoutView.render();
   }
-  model.addDishToMenu(556177);
-  /**
-   * IMPORTANT: app.js is the only place where you are allowed to
-   * query for elements in the whole document.
-   * In other places you should limit the search only to the children
-   * of the specific view you're working with.
-   */
-  });
+
+
+
+  hideAllViews();
+  showHomeView();
 };
+
+function hideAllViews() {
+  document.getElementById("homeView").style.display="none";
+  document.getElementById("sidebarView").style.display="none";
+  document.getElementById("searchView").style.display="none";
+  document.getElementById("dishDetailsView").style.display="none";
+  document.getElementById("overviewView").style.display="none";
+  document.getElementById("printoutView").style.display="none";
+}
+
+function showHomeView() {
+  document.getElementById("homeView").style.display="block";
+}
+
+function showSelectDishView() {
+  document.getElementById("homeView").style.display="none";
+  document.getElementById("sidebarView").style.display="block";
+  document.getElementById("searchView").style.display="block";
+}

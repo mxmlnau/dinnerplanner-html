@@ -1,9 +1,9 @@
-class PrintoutView {
+class PrintoutView extends View {
   constructor(container, model) {
+    super();
     this.container = container;
     this.model = model;
     this.startBtn = null;
-    this.model.addObserver(this);
   }
 
   render() {
@@ -39,7 +39,7 @@ class PrintoutView {
 
   update(model, changeDetails) {
     console.log(this.model.menu);
-    console.log("Update");
+    console.log("Update printout");
     this.render();
   }
 
