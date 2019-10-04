@@ -3,7 +3,6 @@ class DishSearchView extends View {
     super();
     this.container = container;
     this.model = model;
-    this.startBtn = null;
   }
 
   render() {

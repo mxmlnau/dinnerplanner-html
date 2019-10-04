@@ -41,6 +41,5 @@ class SearchView extends View {
   }
 
   update(payload) {
-    // TODO lab3
   }
 }

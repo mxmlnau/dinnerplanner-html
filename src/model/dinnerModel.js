@@ -11,6 +11,7 @@ class DinnerModel extends Observable {
 
   setNumberOfGuests(num) {
     if (num >= 0) {
+    console.log("setNumberOfGuests called, is: ",this.numberOfGuests);
         this.numberOfGuests = num;
     } 
     this.notifyObservers(this,"hej");

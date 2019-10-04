@@ -3,6 +3,8 @@ class SidebarView extends View {
     super();
     this.container = container;
     this.model = model;
+    this.guestsInput = null;
+    this.attach();
   }
   
   render() {
@@ -24,12 +26,6 @@ class SidebarView extends View {
     this.afterRender();
   }
 
-  update(model, changeDetails) {
-    console.log(this.model.menu);
-    console.log("Update sidebar");
-    this.render();
-  }
-
   afterRender() {
     const menuList = this.container.querySelector("#menu-list");
     const menu = this.model.getFullMenu();
@@ -46,9 +42,13 @@ class SidebarView extends View {
       div.appendChild(right);
       menuList.appendChild(div);
     }
+    this.guestsInput = this.container.querySelector("#guest-input");
+
   }
 
   update(payload) {
-    // TODO Lab3
+    console.log(this.model.menu);
+    console.log("Update sidebar, payload: ", payload);
+    this.render();
   }
 }

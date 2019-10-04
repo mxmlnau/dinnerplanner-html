@@ -1,7 +1,6 @@
 class HomeController {
   constructor(view) {
     this.view = view;
-    console.log(this.view);
     }
 
   renderView() {
@@ -12,6 +11,4 @@ class HomeController {
   update(payload) {
     // TODO Lab 3
   }
-
-   // TODO Lab 3
 }

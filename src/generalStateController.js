@@ -5,6 +5,7 @@ let searchView = null;
 let dishDetailsView = null;
 let overviewView = null;
 let printoutView = null;
+let sidebarController = null;
 
 window.onload = function () {
   console.log("start");
@@ -28,7 +29,9 @@ window.onload = function () {
 
   if (document.getElementById("sidebarView") != null) {
     sidebarView = new SidebarView(document.getElementById("sidebarView"),model);
-    sidebarView.render();
+    sidebarController = new SidebarController(sidebarView, model);
+    sidebarController.renderView();
+//    sidebarView.render();
   }
 
   if (document.getElementById("searchView") != null) {
@@ -72,8 +75,8 @@ function showHomeView() {
 
 function showSelectDishView() {
   homeView.hide();
-  sidebarView.render();
-  sidebarView.show();
   sidebarView.attach();
+  sidebarController.renderView();
+  sidebarView.show();
   searchView.show();
 }
